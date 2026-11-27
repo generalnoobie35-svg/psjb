@@ -1,23 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
+import { createFileRoute } from '@tanstack/react-router';
+import Dashboard from '@/components/breach/dashboard';
+export const Route = createFileRoute('/')({
+ head: () => ({ meta: [ {title:'Dashboard | BREACH//13.52 ALT'}, {name:'description',content:'PlayStation 4 research dashboard with honest firmware, payload and integration status. Modern and independent lightweight PS4 interfaces.'}, {property:'og:title',content:'BREACH//13.52 ALT — Research Dashboard'}, {property:'og:description',content:'PlayStation 4 Slim firmware research, verified upload metadata, and transparent console integration status.'}, {property:'og:type',content:'website'}, {name:'twitter:card',content:'summary_large_image'} ] }),
+ component: Dashboard,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}

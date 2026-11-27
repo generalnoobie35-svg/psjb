@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+- Serve the legacy interface as standalone ES5 HTML/CSS/JS under public/legacy, without imports from React, so old console browsers never need the modern bundle.
+- Keep modern shared state and browser-only diagnostics in src/modules and src/lib, static metadata in src/data, and content in the index and validated dynamic section route, so features stay isolated and extensible.
+- Persist only harmless interface preferences locally; keep activity, user files and manual status confirmations session-only, so no console state is implied or uploaded.
+- Never import or execute reference binaries or RAW GAME source; compute metadata offline and attribute supplied source observations, so the live app remains a research interface.

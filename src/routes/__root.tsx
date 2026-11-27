@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { BreachProvider } from "@/modules/store";
+import { Shell } from "@/components/breach/shell";
 
 function NotFoundComponent() {
   return (
@@ -81,16 +83,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "BREACH//13.52 ALT" },
+      { name: "description", content: "PlayStation 4 firmware research workspace with transparent status information." },
+      { name: "author", content: "BREACH Research" },
+      { property: "og:title", content: "BREACH//13.52 ALT" },
+      { property: "og:description", content: "PlayStation 4 firmware research workspace with transparent status information." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Barlow:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -124,7 +128,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <BreachProvider><Shell><Outlet /></Shell></BreachProvider>
     </QueryClientProvider>
   );
 }
