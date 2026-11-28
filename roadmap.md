@@ -1,4 +1,5 @@
 # BREACH implementation
+- [x] Fix forced PS4 Legacy redirect and verify mode switching without changing unrelated unfinished features
 - [ ] Modern dashboard and all functional utility panels
 - [ ] Uploaded binary metadata and static source research
 - [ ] Independent lightweight legacy interface and controller navigation

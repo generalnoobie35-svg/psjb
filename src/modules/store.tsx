@@ -23,11 +23,15 @@ export function BreachProvider({ children }: { children: ReactNode }) {
     if (parsed && typeof parsed === 'object') { const p = parsed as Record<string, unknown>; saved = { compact: typeof p['compact'] === 'boolean' ? p['compact'] : defaults.compact, animations: typeof p['animations'] === 'boolean' ? p['animations'] : defaults.animations, effects: typeof p['effects'] === 'boolean' ? p['effects'] : defaults.effects, autoDetect: typeof p['autoDetect'] === 'boolean' ? p['autoDetect'] : defaults.autoDetect, reduceRefresh: typeof p['reduceRefresh'] === 'boolean' ? p['reduceRefresh'] : defaults.reduceRefresh, accent: p['accent'] === 'cyan' ? 'cyan' : 'red', mode: p['mode'] === 'legacy' ? 'legacy' : 'modern' }; }
     localStorage.setItem('breach-storage-test', '1'); localStorage.removeItem('breach-storage-test'); setStorageAvailable(true);
    } catch { notify('Local preferences are unavailable; changes apply to this session only.'); }
+   // Opening a modern URL is an explicit choice, including the Legacy return link.
+   // Device detection must never navigate away or revive a stale mode preference.
+   saved = { ...saved, mode: 'modern' };
    setPrefs(saved);
-   const found = detectBrowser(navigator.userAgent); setDetection(found);
-   if (saved.mode === 'legacy' || (saved.autoDetect && /PlayStation 4/i.test(navigator.userAgent))) { window.location.replace('/legacy/index.html'); return; }
+   try { localStorage.setItem('breach-preferences', JSON.stringify(saved)); } catch { /* Session-only fallback */ }
+   const found = saved.autoDetect ? detectBrowser(navigator.userAgent) : initialDetection;
+   setDetection(found);
    log('Dashboard opened', 'Modern interface initialized. No console connection established.');
-   log('Firmware detection completed', found.firmware);
+   if (saved.autoDetect) log('Firmware detection completed', found.firmware);
  }, [log]);
  useEffect(() => { if (!notice) return; const timer = window.setTimeout(() => notify(''), 6500); return () => window.clearTimeout(timer); }, [notice]);
  const setPreference: Store['setPreference'] = (key, value) => { setPrefs(previous => { const next = { ...previous, [key]: value }; try { localStorage.setItem('breach-preferences', JSON.stringify(next)); } catch { notify('Preference changed for this session; local storage is unavailable.'); } return next; }); log('Settings changed', `${key}: ${value}`); };

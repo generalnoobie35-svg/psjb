@@ -34,3 +34,4 @@ use the editor.
 - Keep modern shared state and browser-only diagnostics in src/modules and src/lib, static metadata in src/data, and content in the index and validated dynamic section route, so features stay isolated and extensible.
 - Persist only harmless interface preferences locally; keep activity, user files and manual status confirmations session-only, so no console state is implied or uploaded.
 - Never import or execute reference binaries or RAW GAME source; compute metadata offline and attribute supplied source observations, so the live app remains a research interface.
+- Treat opening a modern URL as choosing Modern Mode; browser detection never redirects, so PS4 visitors and Legacy return links cannot get trapped by device detection or stale preferences.
