@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Legacy PS4 Notifications | BREACH//13.52 ALT</title>
+  <meta name="description" content="Compose custom PS4 notification messages. Console delivery requires active GoldHEN and a real connected notification service.">
+  <meta property="og:title" content="Legacy PS4 Notifications — BREACH//13.52 ALT">
+  <meta property="og:description" content="Lightweight custom-message composition with transparent GoldHEN and console connection status.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><span>//</span> BREACH<span>//</span>13.52 ALT</div>
+    <p class="sub">LEGACY PS4 MODE / NOTIFICATIONS</p>
+    <div class="modes"><a href="/notifications">MODERN NOTIFICATIONS</a><a href="index.html#dashboard">LEGACY DASHBOARD</a></div>
+  </header>
+  <main>
+    <h1>Notifications</h1>
+    <div class="notice">Console delivery is unavailable: no notification service is connected. GoldHEN being active alone does not give this website access to console notifications.</div>
+    <noscript><div class="notice">JavaScript is disabled. Preview and clear are unavailable. Console delivery is not connected.</div></noscript>
+    <div class="panel">
+      <h2>Custom notification</h2>
+      <label for="notification-message">Message<textarea id="notification-message" rows="6" placeholder="Your message to the PS4…"></textarea></label>
+      <p class="muted"><span id="notification-count">0 characters</span> · Draft only · not saved</p>
+      <button type="button" disabled aria-describedby="notification-delivery">Send to PS4 — unavailable</button>
+      <button type="button" id="notification-clear" disabled>Clear</button>
+      <h3>Message preview · NOT SENT</h3>
+      <pre id="notification-preview">Your notification message will appear here.</pre>
+    </div>
+    <div class="panel">
+      <h2>Console delivery</h2>
+      <label for="notification-goldhen">GoldHEN status (manual · this page only)
+        <select id="notification-goldhen"><option value="unknown">UNKNOWN</option><option value="active">USER-CONFIRMED ACTIVE</option><option value="inactive">USER-CONFIRMED INACTIVE</option></select>
+      </label>
+      <div class="row"><span class="label">Notification service</span><strong>NOT CONNECTED</strong></div>
+      <div class="row"><span class="label">Messages sent</span><strong>None</strong></div>
+      <p id="notification-delivery" role="status">GoldHEN must be active on the console, and a compatible notification service must be connected before sending.</p>
+    </div>
+  </main>
+  <footer>BREACH//13.52 ALT · No console connected. Manual status is not independent verification.</footer>
+  <script src="notifications.js"></script>
+</body>
+</html>
